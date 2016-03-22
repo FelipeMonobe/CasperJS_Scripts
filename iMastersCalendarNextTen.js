@@ -8,20 +8,20 @@ casper.start('http://imasters.com.br/agenda/', function() {
 casper.echo('2 - checking events');
 casper.waitForSelector('.location', function() {
   eventList = casper.evaluate(function() {
-   var stringNA = 'Não disponível',
-        calendarEvents = [],
-        containers = Array.prototype.slice.call(document.querySelectorAll('section.published'));
+    var stringNA = 'Não disponível',
+      calendarEvents = [],
+      containers = Array.prototype.slice.call(document.querySelectorAll('section.published'));
 
     containers.forEach(function(container) {
-        var qsA = container.querySelector('a'),
-          qsDate = container.querySelector('.date'),
-          qsLocation = container.querySelector('.location');
+      var qsA = container.querySelector('a'),
+        qsDate = container.querySelector('.date'),
+        qsLocation = container.querySelector('.location');
 
-	calendarEvents.push({
-          name: qsA ? qsA.title.trim() : stringNA,
-          date: qsDate ? qsDate.innerHTML.trim() : stringNA,
-          location: qsLocation ? qsLocation.innerHTML.trim() : stringNA,
-          url: qsA ? qsA.href.trim() : stringNA
+      calendarEvents.push({
+        name: qsA ? qsA.title.trim() : stringNA,
+        date: qsDate ? qsDate.innerHTML.trim() : stringNA,
+        location: qsLocation ? qsLocation.innerHTML.trim() : stringNA,
+        url: qsA ? qsA.href.trim() : stringNA
       });
     });
 
@@ -29,10 +29,10 @@ casper.waitForSelector('.location', function() {
   });
 }, null, 30000);
 
-
 casper.run(function() {
   casper.echo('3 - printing results\n');
-  casper.echo('Next 'eventList.length + ' events:\n');
+  casper.echo('Next '
+    eventList.length + ' events:\n');
   eventList.forEach(function(evt) {
     casper.echo(evt.name + '\nQuando: ' + evt.date +
       '\nOnde: ' + evt.location + '\nSite: ' + evt.url + '\n');

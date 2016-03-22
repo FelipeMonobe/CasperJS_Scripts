@@ -4,6 +4,8 @@ var futureEvents = [];
 var today = new Date().getDate();
 var eventList = [];
 
+debugger;
+
 casper.start('http://imasters.com.br/agenda/', function() {
   casper.echo('1 - page loaded');
 });
@@ -13,10 +15,9 @@ casper.waitForSelector('.has', function() {
   events = casper.evaluate(function() {
     return Array.prototype.slice.call(document.querySelectorAll('.has>a'));
   });
-  
+
   casper.echo('events');
   casper.echo(events);
-
 
   futureEvents = events.filter(function(evt) {
     return parseInt(evt.innerText) >= today;
@@ -26,7 +27,6 @@ casper.waitForSelector('.has', function() {
   casper.echo(futureEvents);
 
 }, null, 30000);
-
 
 /*
 futureEvents.forEach(function(fEvent) {
@@ -56,6 +56,7 @@ futureEvents.forEach(function(fEvent) {
   })
 });
 */
+
 casper.run(function() {
   casper.echo('4 - printing results\n');
   casper.echo('Next ' + eventList.length + ' events:\n');
