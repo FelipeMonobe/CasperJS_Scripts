@@ -20,8 +20,8 @@ casper.start('https://www.facebook.com/messages/' + receipt, function() {
 casper.then(function() {
   casper.echo('2 - submitting form');
   casper.fill('form#login_form', {
-    'email': sensData.email,
-    'pass': sensData.pass
+    'email': credentials.email,
+    'pass': credentials.password
   }, true);
 });
 
@@ -30,7 +30,7 @@ casper.then(function() {
     casper.echo('3 - Sending message');
     casper.sendKeys('.uiTextareaNoResize', message);
     casper.click('input[value="Reply"]');
-  });
+  }, 30000);
 });
 
 casper.run();
