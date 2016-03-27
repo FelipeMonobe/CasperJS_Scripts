@@ -31,8 +31,7 @@ casper.waitForSelector('.location', function() {
 
 casper.run(function() {
   casper.echo('3 - printing results\n');
-  casper.echo('Next '
-    eventList.length + ' events:\n');
+  casper.echo('Next ' + eventList.length + ' events:\n');
   eventList.forEach(function(evt) {
     casper.echo(evt.name + '\nQuando: ' + evt.date +
       '\nOnde: ' + evt.location + '\nSite: ' + evt.url + '\n');
