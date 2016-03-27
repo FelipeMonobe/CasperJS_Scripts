@@ -5,8 +5,8 @@ casper.start('http://imasters.com.br/agenda/', function() {
   casper.echo('1 - page loaded');
 });
 
-casper.echo('2 - checking events');
 casper.waitForSelector('.location', function() {
+  casper.echo('2 - checking events');
   eventList = casper.evaluate(function() {
     var stringNA = 'Não disponível',
       calendarEvents = [],
